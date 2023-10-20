@@ -34,13 +34,13 @@ One could implement transitions manually in IE11 using the `setTransform` option
 With npm:
 
 ```bash
-$ npm install --save @panzoom/panzoom
+$ npm install --save @arcweave/panzoom
 ```
 
 With yarn:
 
 ```bash
-$ yarn add @panzoom/panzoom
+$ yarn add @arcweave/panzoom
 ```
 
 Panzoom uses [UMD](https://github.com/umdjs/umd) and can be loaded a lot of ways.
@@ -48,19 +48,19 @@ Panzoom uses [UMD](https://github.com/umdjs/umd) and can be loaded a lot of ways
 With ES6 imports:
 
 ```js
-import Panzoom from '@panzoom/panzoom'
+import Panzoom from '@arcweave/panzoom'
 ```
 
 With commonjs or browserify:
 
 ```js
-const Panzoom = require('@panzoom/panzoom')
+const Panzoom = require('@arcweave/panzoom')
 ```
 
 With an AMD loader in an anonymous module:
 
 ```js
-define(['@panzoom/panzoom'], function (Panzoom) {
+define(['@arcweave/panzoom'], function (Panzoom) {
   const elem = document.getElementById('panzoom-element')
   Panzoom(elem)
 })
@@ -75,7 +75,7 @@ With a script tag:
 With a script tag from a CDN:
 
 ```html
-<script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+<script src="https://unpkg.com/@arcweave/panzoom@4.5.1/dist/panzoom.min.js"></script>
 ```
 
 ## Usage
