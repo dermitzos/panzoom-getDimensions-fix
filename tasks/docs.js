@@ -85,26 +85,26 @@ function addDefaults(data) {
 const panzoomOptions =
   '\n\n## `PanzoomOptions`\n\nIncludes `MiscOptions`, `PanOptions`, and `ZoomOptions`\n\n' +
   getInterfaceContent(
-    'types.miscoptions.md',
+    'types.MiscOptions.md',
     '## MiscOptions\n\nThese options can be passed to `Panzoom()`, as well as any pan or zoom function. One exception is `force`, which can only be passed to methods like `pan()` or `zoom()`, but not `Panzoom()` or `setOptions()` as it should not be set globally.'
   ) +
   getInterfaceContent(
-    'types.panonlyoptions.md',
+    'types.PanOnlyOptions.md',
     '## PanOptions (includes [MiscOptions](#MiscOptions))'
   ) +
   getInterfaceContent(
-    'types.zoomonlyoptions.md',
+    'types.ZoomOnlyOptions.md',
     '## ZoomOptions (includes [MiscOptions](#MiscOptions))'
   )
 
 data += addDefaults(panzoomOptions)
 
 data += getInterfaceContent(
-  'types.panzoomobject.md',
+  'types.PanzoomObject.md',
   '## PanzoomObject\n\nThese methods are available after initializing Panzoom.'
 ).replace(/CurrentValues/g, '[CurrentValues](#CurrentValues)')
 
-data += getInterfaceContent('types.currentvalues.md')
+data += getInterfaceContent('types.CurrentValues.md')
 
 const events = read('./EVENTS.md')
 data += events
