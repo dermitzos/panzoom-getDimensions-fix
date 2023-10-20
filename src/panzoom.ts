@@ -130,7 +130,13 @@ function Panzoom(
       elem.style.touchAction = opts.touchAction
     }
   }
-
+  const originalDimensions = getDimensions(elem).elem
+  function resetDimensions(entries: ResizeObserverEntry[]) {
+    originalDimensions.width = entries[0].contentRect.width
+    originalDimensions.height = entries[0].contentRect.height
+  }
+  const observer = new ResizeObserver(resetDimensions)
+  observer.observe(elem)
   let x = 0
   let y = 0
   let scale = 1
@@ -196,8 +202,10 @@ function Panzoom(
 
     if (opts.contain) {
       const dims = getDimensions(elem)
-      const realWidth = dims.elem.width / scale
-      const realHeight = dims.elem.height / scale
+      // const realWidth = dims.elem.width / scale
+      // const realHeight = dims.elem.height / scale
+      const realWidth = originalDimensions.width
+      const realHeight = originalDimensions.height
       const scaledWidth = realWidth * toScale
       const scaledHeight = realHeight * toScale
       const diffHorizontal = (scaledWidth - realWidth) / 2
@@ -268,8 +276,8 @@ function Panzoom(
 
     if (opts.contain) {
       const dims = getDimensions(elem)
-      const elemWidth = dims.elem.width / scale
-      const elemHeight = dims.elem.height / scale
+      const elemWidth = originalDimensions.width
+      const elemHeight = originalDimensions.height
       if (elemWidth > 1 && elemHeight > 1) {
         const parentWidth = dims.parent.width - dims.parent.border.left - dims.parent.border.right
         const parentHeight = dims.parent.height - dims.parent.border.top - dims.parent.border.bottom
@@ -391,8 +399,8 @@ function Panzoom(
     // Adjust the clientX/clientY for HTML elements,
     // because they have a transform-origin of 50% 50%
     if (!isSVG) {
-      clientX -= dims.elem.width / scale / 2
-      clientY -= dims.elem.height / scale / 2
+      clientX -= originalDimensions.width / 2
+      clientY -= originalDimensions.height / 2
     }
 
     // Convert the mouse point from it's position over the
@@ -541,6 +549,7 @@ function Panzoom(
     destroyPointer('down', options.canvas ? parent : elem, handleDown)
     destroyPointer('move', document, handleMove)
     destroyPointer('up', document, handleUp)
+    observer.disconnect()
   }
 
   if (!options.noBind) {

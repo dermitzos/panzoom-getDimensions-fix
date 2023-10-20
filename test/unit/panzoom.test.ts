@@ -259,6 +259,7 @@ describe('Panzoom', () => {
       assert.strictEqual(pan.y, 50)
       div.style.width = '100px'
       div.style.height = '100px'
+      await skipFrame()
       panzoom.pan(100, 100)
       await skipFrame()
       // Now contrains to 25, 25
